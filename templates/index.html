@@ -113,7 +113,7 @@
                                             <td>{{ item.name }}</td>
                                             <td>{{ item.category.name }}</td>
                                             <td class="text-center">
-                                                <a href="{{ url_for }}" class="btn btn-info btn-sm"><i
+                                                <a href="{{ url_for('item',category_id=item.category.id,item_id=item.id) }}" class="btn btn-info btn-sm"><i
                                                         class="fas fa-eye"></i></a>
                                                 {% if 'user_id' in login_session and login_session['user_id'] == item.category.user_id %}
                                                 <a href="" class="btn btn-info btn-sm"><i class="fas fa-pen"></i></a>
