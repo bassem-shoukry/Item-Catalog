@@ -1,0 +1,42 @@
+{% extends "layout/master.html" %}
+{% block header %}
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
+{% block content %}
+   <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+              <div class="card card-default">
+                <div class="card-header">
+                <h3 class="card-title">
+                 {{ category.name }}
+                </h3>
+              </div>
+              <div class="card-body">
+                <div class="callout callout-danger">
+                  <h5>{{ item.name }}</h5>
+
+                  <p>{{ item.description }}</p>
+                </div>
+
+              </div>
+              <!-- /.card-body -->
+            </div>
+
+            <!-- general form elements -->
+
+            <!-- /.card -->
+          </div>
+   </div>
+          <!--/.col (left) -->
+{% endblock %}
