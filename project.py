@@ -70,7 +70,7 @@ def gconnect():
     if result['issued_to'] != CLIENT_ID:
         response = make_response(
             json.dumps("Token's client ID does not match app's."), 401)
-        print "Token's client ID does not match app's."
+        print("Token's client ID does not match app's.")
         response.headers['Content-Type'] = 'application/json'
         return response
 
@@ -103,7 +103,7 @@ def gconnect():
         user_id = createUser(login_session)
     login_session['user_id'] = user_id
     flash("you are now logged in as %s" % login_session['username'])
-    print "done!"
+    print("done!")
     return 'success'
 
 
@@ -115,7 +115,7 @@ def fbconnect():
         response.headers['Content-Type'] = 'application/json'
         return response
     access_token = request.data
-    print "access token received %s " % access_token
+    print("access token received %s " % access_token)
 
     app_id = json.loads(open('fb_client_secrets.json', 'r').read())[
         'web']['app_id']
@@ -134,8 +134,6 @@ def fbconnect():
           'access_token=%s&fields=name,id,email' % token
     h = httplib2.Http()
     result = h.request(url, 'GET')[1]
-    # print "url sent for API access:%s"% url
-    # print "API JSON result: %s" % result
     data = json.loads(result)
     login_session['provider'] = 'facebook'
     login_session['username'] = data["name"]
@@ -166,7 +164,7 @@ def logout():
     if login_session['provider'] == 'google':
         access_token = login_session.get('access_token')
         if access_token is None:
-            print 'Access Token is None'
+            print('Access Token is None')
             response = make_response(
                 json.dumps('Current user not connected.'), 401)
             response.headers['Content-Type'] = 'application/json'
@@ -207,7 +205,7 @@ def logout():
 @app.route('/login')
 def showLogin():
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for x in xrange(32))
+                    for x in range(32))
     login_session['state'] = state
     # return "The current session state is %s" % login_session['state']
     return render_template('auth/login.html', STATE=state)
