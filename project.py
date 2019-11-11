@@ -158,6 +158,7 @@ def fbconnect():
     flash("Now logged in as %s" % login_session['username'])
     return 'success'
 
+
 # logout
 @app.route('/logout')
 def logout():
@@ -200,6 +201,7 @@ def logout():
         h = httplib2.Http()
         result = h.request(url, 'DELETE')[1]
         return result
+
 
 # Create anti-forgery state token
 @app.route('/login')
