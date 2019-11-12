@@ -14,7 +14,10 @@ import httplib2
 import json
 from flask import make_response
 import requests
+from sqlalchemy.orm import lazyload
+
 app = Flask(__name__)
+app.config["JSON_SORT_KEYS"] = False
 # Connect to Database and create database session
 engine = create_engine('sqlite:///catalog.db')
 Base.metadata.bind = engine
@@ -410,9 +413,12 @@ def item(category_id, item_id):
 # return all categories in json
 @app.route('/catalog.json')
 def catalogJson():
-    category_query = session.query(Category).all()
-    return jsonify(categories=[i.serialize for i in category_query])
+    categories = session.query(Category).options(lazyload('items')).all()
+    return make_response(jsonify(categories=[i.serialize for i in categories]), 200)
 
+
+
+# return all categories in json
 
 # user functions
 def createUser(user):
