@@ -417,6 +417,21 @@ def catalogJson():
     return make_response(jsonify(
         categories=[i.serialize for i in categories]), 200)
 
+# return item in Json
+@app.route('/categories/<int:category_id>/items/<item_id>/JSON')
+def itemJson(item_id):
+    item_json = session.query(Item).filter_by(id=item_id).one()
+    return make_response(jsonify(item_json.serialize), 200)
+
+
+# return category items in Json
+@app.route('/categories/<int:category_id>/items/JSON')
+def categoryItemsJson(category_id):
+    category_items = session.query(Item).filter_by(
+        category_id=category_id).all()
+    return make_response(jsonify(
+        categoryItems=[i.serialize for i in category_items]), 200)
+
 
 # user functions
 def createUser(user):

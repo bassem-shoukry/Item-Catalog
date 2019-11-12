@@ -77,6 +77,9 @@ To get started, I recommend you to download Vagrant, VirtualBox and VM configura
 `/categories/category_id/items/item_id`
 ### Categories Json
 `/catalog.json`
-
+### Category Item Json
+`/categories/category_id/items/item_id/JSON`
+### Category items Json
+`/categories/category_id/items/JSON`
 ### Frontend Template uses:
 [AdminLTE 3](https://adminlte.io/themes/dev/AdminLTE/index.html)
