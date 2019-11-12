@@ -2,7 +2,6 @@ from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
-from flask import jsonify, make_response
 Base = declarative_base()
 
 
@@ -43,6 +42,7 @@ class Item(Base):
     description = Column(String(750), nullable=False)
     category_id = Column(Integer, ForeignKey('categories.id'))
     category = relationship(Category)
+
     # Add add a decorator property to serialize data from the database
     @property
     def serialize(self):
@@ -53,6 +53,7 @@ class Item(Base):
             'id': self.id,
 
         }
+
 
 engine = create_engine('sqlite:///catalog.db')
 

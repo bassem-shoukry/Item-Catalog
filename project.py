@@ -414,11 +414,9 @@ def item(category_id, item_id):
 @app.route('/catalog.json')
 def catalogJson():
     categories = session.query(Category).options(lazyload('items')).all()
-    return make_response(jsonify(categories=[i.serialize for i in categories]), 200)
+    return make_response(jsonify(
+        categories=[i.serialize for i in categories]), 200)
 
-
-
-# return all categories in json
 
 # user functions
 def createUser(user):
