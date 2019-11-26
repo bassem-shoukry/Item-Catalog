@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import random
 import string
+import psycopg2
 from flask import Flask, render_template
 from flask import request, redirect, jsonify, url_for, flash
 from sqlalchemy import create_engine, asc
@@ -15,11 +16,12 @@ import json
 from flask import make_response
 import requests
 from sqlalchemy.orm import lazyload
-
+from flask_sqlalchemy import  SQLAlchemy
 app = Flask(__name__)
 app.config["JSON_SORT_KEYS"] = False
+DATABASE_URI = 'postgres+psycopg2://catalog:catalog@localhost:5432/catalog'
 # Connect to Database and create database session
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine(DATABASE_URI)
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)

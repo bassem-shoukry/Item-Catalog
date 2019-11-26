@@ -55,7 +55,8 @@ class Item(Base):
 
         }
 
+DATABASE_URI = 'postgres+psycopg2://catalog:catalog@localhost:5432/catalog'
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine(DATABASE_URI)
 
 Base.metadata.create_all(engine)
