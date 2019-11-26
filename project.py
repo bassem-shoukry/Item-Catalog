@@ -16,7 +16,6 @@ import json
 from flask import make_response
 import requests
 from sqlalchemy.orm import lazyload
-from flask_sqlalchemy import  SQLAlchemy
 app = Flask(__name__)
 app.config["JSON_SORT_KEYS"] = False
 DATABASE_URI = 'postgres+psycopg2://catalog:catalog@localhost:5432/catalog'
